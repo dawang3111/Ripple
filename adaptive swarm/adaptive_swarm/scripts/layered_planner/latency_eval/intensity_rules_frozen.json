@@ -1,0 +1,3021 @@
+{
+  "version": 1,
+  "source_workbook": "Adaptive Swarm 任务规则组.xlsx",
+  "source_sha256": "e427e392335e208096e7faa20cf9c927dd6d7f1cc13ec88820ed50ff4b53b049",
+  "groups": [
+    {
+      "target": "drone_drone",
+      "name": "机间低净空",
+      "logic": "OR",
+      "rules": [
+        {
+          "rule_id": "drone_drone_xlsx_row_4",
+          "name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.48937,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.48937 s"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.622357,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.622357 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B4"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_5",
+          "name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.14,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.14 m"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.622357,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.622357 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B5"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_6",
+          "name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519 且 源机当前目标点偏差 <= 0.622357 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.800519,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.800519"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.622357,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.622357 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B6"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_7",
+          "name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255 且 源机当前目标点偏差 <= 0.622357 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.805255,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.805255"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.622357,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.622357 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B7"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_8",
+          "name": "群体目标点偏差 + 任务时间",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.48937,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.48937 s"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B8"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_9",
+          "name": "群体目标点偏差 + 终点距离",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.14,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.14 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B9"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_10",
+          "name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.663896,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.663896 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.48937,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.48937 s"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.622357,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.622357 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B10"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_11",
+          "name": "群体目标点偏差 + 任务进度",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.800519,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.800519"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B11"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_12",
+          "name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.663896,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.663896 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.14,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.14 m"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.622357,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.622357 m"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B12"
+        },
+        {
+          "rule_id": "drone_drone_xlsx_row_13",
+          "name": "群体目标点偏差 + 任务进度",
+          "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.698181,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.698181 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.805255,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.805255"
+            }
+          ],
+          "source_sheet": "机间低净空",
+          "source_cell": "B13"
+        }
+      ]
+    },
+    {
+      "target": "drone_obstacle",
+      "name": "机障低净空",
+      "logic": "OR",
+      "rules": [
+        {
+          "rule_id": "drone_obstacle_xlsx_row_4",
+          "name": "群体目标点偏差 + 终点距离",
+          "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.672792,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.672792 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 3.58963,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 3.58963 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B4"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_5",
+          "name": "群体目标点偏差 + 终点距离",
+          "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.690907,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.690907 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 3.58963,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 3.58963 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B5"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_6",
+          "name": "任务时间 + 任务进度",
+          "expression": "任务已用时间 <= 1.46437 s 且 全局设定点进度 <= 0.548852",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.46437,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.46437 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.548852,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.548852"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B6"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_7",
+          "name": "任务时间 + 终点距离",
+          "expression": "任务已用时间 <= 1.46437 s 且 领机到任务终点距离 > 3.58963 m",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.46437,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.46437 s"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 3.58963,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 3.58963 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B7"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_8",
+          "name": "任务时间 + 任务进度",
+          "expression": "任务已用时间 <= 0.9725 s 且 全局设定点进度 <= 0.548852",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.9725,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.9725 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.548852,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.548852"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B8"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_9",
+          "name": "群体目标点偏差 + 任务进度",
+          "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 全局设定点进度 <= 0.548852",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.672792,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.672792 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.548852,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.548852"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B9"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_10",
+          "name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.672792,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.672792 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 3.58963,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 3.58963 m"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.637641,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.637641 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B10"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_11",
+          "name": "终点距离 + 源机目标点偏差",
+          "expression": "领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+          "conditions": [
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 3.58963,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 3.58963 m"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.637641,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.637641 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B11"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_12",
+          "name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.690907,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.690907 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 3.58963,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 3.58963 m"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.637641,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.637641 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B12"
+        },
+        {
+          "rule_id": "drone_obstacle_xlsx_row_13",
+          "name": "任务时间 + 终点距离",
+          "expression": "任务已用时间 <= 0.9725 s 且 领机到任务终点距离 > 2.34554 m",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.9725,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.9725 s"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.34554,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.34554 m"
+            }
+          ],
+          "source_sheet": "机障低净空",
+          "source_cell": "B13"
+        }
+      ]
+    },
+    {
+      "target": "deadlock",
+      "name": "死锁代理",
+      "logic": "OR",
+      "rules": [
+        {
+          "rule_id": "deadlock_xlsx_row_4",
+          "name": "当前机间距 + 任务时间 + 终点距离",
+          "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 领机到任务终点距离 > 2.82452 m",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.30188,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.30188 s"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.82452,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.82452 m"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B4"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_5",
+          "name": "当前机间距 + 任务时间 + 任务进度",
+          "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.721829",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.30188,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.30188 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.721829,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.721829"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B5"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_6",
+          "name": "当前机间距 + 任务时间",
+          "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.30188,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.30188 s"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B6"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_7",
+          "name": "当前机间距 + 终点距离",
+          "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.82452,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.82452 m"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B7"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_8",
+          "name": "当前机间距 + 任务进度",
+          "expression": "注入前最小机间距 > 0.204369 m 且 全局设定点进度 <= 0.721829",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.721829,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.721829"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B8"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_9",
+          "name": "当前机间距 + 终点距离 + 任务进度",
+          "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m 且 全局设定点进度 <= 0.721829",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.82452,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.82452 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.721829,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.721829"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B9"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_10",
+          "name": "任务时间 + 任务进度",
+          "expression": "任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.520989",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.30188,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.30188 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.520989,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.520989"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B10"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_11",
+          "name": "任务时间 + 任务进度",
+          "expression": "任务已用时间 <= 0.94625 s 且 全局设定点进度 <= 0.520989",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.94625,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.94625 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.520989,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.520989"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B11"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_12",
+          "name": "当前机障距 + 任务进度",
+          "expression": "注入前最小机障距离 > 0.140833 m 且 全局设定点进度 <= 0.520989",
+          "conditions": [
+            {
+              "field": "current_min_obstacle_distance",
+              "op": ">",
+              "threshold": 0.140833,
+              "unit": "m",
+              "source_text": "注入前最小机障距离 > 0.140833 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.520989,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.520989"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B12"
+        },
+        {
+          "rule_id": "deadlock_xlsx_row_13",
+          "name": "当前机间距 + 任务时间 + 源机目标点偏差",
+          "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 源机当前目标点偏差 <= 0.618156 m",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.204369,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.204369 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 1.30188,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 1.30188 s"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.618156,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.618156 m"
+            }
+          ],
+          "source_sheet": "死锁代理",
+          "source_cell": "B13"
+        }
+      ]
+    },
+    {
+      "target": "delay",
+      "name": "完成时间偏长",
+      "logic": "OR",
+      "rules": [
+        {
+          "rule_id": "delay_xlsx_row_4",
+          "name": "群体方向分歧 + 当前机障距 + 任务进度",
+          "expression": "四机最大位移方向夹角 > 25.2139 ° 且 注入前最小机障距离 > 0.148 m 且 全局设定点进度 > 0.119173",
+          "conditions": [
+            {
+              "field": "cluster_max_course_angle",
+              "op": ">",
+              "threshold": 0.4400655722685982,
+              "unit": "rad",
+              "source_text": "四机最大位移方向夹角 > 25.2139 °"
+            },
+            {
+              "field": "current_min_obstacle_distance",
+              "op": ">",
+              "threshold": 0.148,
+              "unit": "m",
+              "source_text": "注入前最小机障距离 > 0.148 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": ">",
+              "threshold": 0.119173,
+              "unit": "",
+              "source_text": "全局设定点进度 > 0.119173"
+            }
+          ],
+          "source_sheet": "完成时间偏长",
+          "source_cell": "B4"
+        },
+        {
+          "rule_id": "delay_xlsx_row_5",
+          "name": "群体方向分歧 + 当前机障距 + 任务时间",
+          "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+          "conditions": [
+            {
+              "field": "cluster_max_course_angle",
+              "op": ">",
+              "threshold": 0.02239885748839443,
+              "unit": "rad",
+              "source_text": "四机最大位移方向夹角 > 1.28336 °"
+            },
+            {
+              "field": "current_min_obstacle_distance",
+              "op": ">",
+              "threshold": 0.148,
+              "unit": "m",
+              "source_text": "注入前最小机障距离 > 0.148 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": ">",
+              "threshold": 0.21125,
+              "unit": "s",
+              "source_text": "任务已用时间 > 0.21125 s"
+            }
+          ],
+          "source_sheet": "完成时间偏长",
+          "source_cell": "B5"
+        },
+        {
+          "rule_id": "delay_xlsx_row_6",
+          "name": "群体方向分歧 + 当前机障距 + 当前机间距",
+          "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 注入前最小机间距 > 0.193794 m",
+          "conditions": [
+            {
+              "field": "cluster_max_course_angle",
+              "op": ">",
+              "threshold": 0.02239885748839443,
+              "unit": "rad",
+              "source_text": "四机最大位移方向夹角 > 1.28336 °"
+            },
+            {
+              "field": "current_min_obstacle_distance",
+              "op": "<=",
+              "threshold": 0.65732,
+              "unit": "m",
+              "source_text": "注入前最小机障距离 <= 0.65732 m"
+            },
+            {
+              "field": "current_min_pair_distance",
+              "op": ">",
+              "threshold": 0.193794,
+              "unit": "m",
+              "source_text": "注入前最小机间距 > 0.193794 m"
+            }
+          ],
+          "source_sheet": "完成时间偏长",
+          "source_cell": "B6"
+        },
+        {
+          "rule_id": "delay_xlsx_row_7",
+          "name": "当前机障距 + 任务时间",
+          "expression": "注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+          "conditions": [
+            {
+              "field": "current_min_obstacle_distance",
+              "op": ">",
+              "threshold": 0.148,
+              "unit": "m",
+              "source_text": "注入前最小机障距离 > 0.148 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": ">",
+              "threshold": 0.21125,
+              "unit": "s",
+              "source_text": "任务已用时间 > 0.21125 s"
+            }
+          ],
+          "source_sheet": "完成时间偏长",
+          "source_cell": "B7"
+        },
+        {
+          "rule_id": "delay_xlsx_row_8",
+          "name": "群体方向分歧 + 当前机障距 + 任务时间",
+          "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 任务已用时间 > 0.21125 s",
+          "conditions": [
+            {
+              "field": "cluster_max_course_angle",
+              "op": ">",
+              "threshold": 0.02239885748839443,
+              "unit": "rad",
+              "source_text": "四机最大位移方向夹角 > 1.28336 °"
+            },
+            {
+              "field": "current_min_obstacle_distance",
+              "op": "<=",
+              "threshold": 0.65732,
+              "unit": "m",
+              "source_text": "注入前最小机障距离 <= 0.65732 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": ">",
+              "threshold": 0.21125,
+              "unit": "s",
+              "source_text": "任务已用时间 > 0.21125 s"
+            }
+          ],
+          "source_sheet": "完成时间偏长",
+          "source_cell": "B8"
+        }
+      ]
+    },
+    {
+      "target": "planning",
+      "name": "规划代理",
+      "logic": "OR",
+      "rules": [
+        {
+          "rule_id": "planning_xlsx_row_4",
+          "name": "任务时间 + 任务进度",
+          "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.491228,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.491228"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B4"
+        },
+        {
+          "rule_id": "planning_xlsx_row_5",
+          "name": "任务时间 + 源机目标点偏差",
+          "expression": "任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.615968,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.615968 m"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B5"
+        },
+        {
+          "rule_id": "planning_xlsx_row_6",
+          "name": "任务进度 + 源机目标点偏差",
+          "expression": "全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+          "conditions": [
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.491228,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.491228"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.615968,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.615968 m"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B6"
+        },
+        {
+          "rule_id": "planning_xlsx_row_7",
+          "name": "任务时间 + 任务进度 + 源机目标点偏差",
+          "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.491228,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.491228"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.615968,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.615968 m"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B7"
+        },
+        {
+          "rule_id": "planning_xlsx_row_8",
+          "name": "任务时间 + 终点距离",
+          "expression": "任务已用时间 <= 0.89 s 且 领机到任务终点距离 > 2.00451 m",
+          "conditions": [
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            },
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.00451,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.00451 m"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B8"
+        },
+        {
+          "rule_id": "planning_xlsx_row_9",
+          "name": "终点距离 + 任务进度",
+          "expression": "领机到任务终点距离 > 2.00451 m 且 全局设定点进度 <= 0.491228",
+          "conditions": [
+            {
+              "field": "leader_goal_distance",
+              "op": ">",
+              "threshold": 2.00451,
+              "unit": "m",
+              "source_text": "领机到任务终点距离 > 2.00451 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.491228,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.491228"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B9"
+        },
+        {
+          "rule_id": "planning_xlsx_row_10",
+          "name": "群体目标点偏差 + 任务时间",
+          "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.69247,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.69247 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B10"
+        },
+        {
+          "rule_id": "planning_xlsx_row_11",
+          "name": "群体目标点偏差 + 任务进度",
+          "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 全局设定点进度 <= 0.491228",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.69247,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.69247 m"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.491228,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.491228"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B11"
+        },
+        {
+          "rule_id": "planning_xlsx_row_12",
+          "name": "群体目标点偏差 + 任务时间 + 任务进度",
+          "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.69247,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.69247 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            },
+            {
+              "field": "setpoint_progress",
+              "op": "<=",
+              "threshold": 0.491228,
+              "unit": "",
+              "source_text": "全局设定点进度 <= 0.491228"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B12"
+        },
+        {
+          "rule_id": "planning_xlsx_row_13",
+          "name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+          "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.69247,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.69247 m"
+            },
+            {
+              "field": "elapsed_task_time",
+              "op": "<=",
+              "threshold": 0.89,
+              "unit": "s",
+              "source_text": "任务已用时间 <= 0.89 s"
+            },
+            {
+              "field": "source_target_offset",
+              "op": "<=",
+              "threshold": 0.615968,
+              "unit": "m",
+              "source_text": "源机当前目标点偏差 <= 0.615968 m"
+            }
+          ],
+          "source_sheet": "规划代理",
+          "source_cell": "B13"
+        }
+      ]
+    },
+    {
+      "target": "drift",
+      "name": "广播读取偏移",
+      "logic": "OR",
+      "rules": [
+        {
+          "rule_id": "drift_xlsx_row_4",
+          "name": "群体目标点偏差 + 当前机间距 + 源机加速度",
+          "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.751948,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.751948 m"
+            },
+            {
+              "field": "current_min_pair_distance",
+              "op": "<=",
+              "threshold": 0.272198,
+              "unit": "m",
+              "source_text": "注入前最小机间距 <= 0.272198 m"
+            },
+            {
+              "field": "source_acceleration",
+              "op": ">",
+              "threshold": 7.73614,
+              "unit": "m/s²",
+              "source_text": "源机位置差分加速度模长 > 7.73614 m/s²"
+            }
+          ],
+          "source_sheet": "广播读取偏移",
+          "source_cell": "B4"
+        },
+        {
+          "rule_id": "drift_xlsx_row_5",
+          "name": "群体目标点偏差 + 当前机间距 + 源机转向",
+          "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机相邻位移转角 > 1.13097 °",
+          "conditions": [
+            {
+              "field": "cluster_max_target_offset",
+              "op": "<=",
+              "threshold": 0.751948,
+              "unit": "m",
+              "source_text": "四机最大当前目标点偏差 <= 0.751948 m"
+            },
+            {
+              "field": "current_min_pair_distance",
+              "op": "<=",
+              "threshold": 0.272198,
+              "unit": "m",
+              "source_text": "注入前最小机间距 <= 0.272198 m"
+            },
+            {
+              "field": "source_turn_angle",
+              "op": ">",
+              "threshold": 0.01973915024128027,
+              "unit": "rad",
+              "source_text": "源机相邻位移转角 > 1.13097 °"
+            }
+          ],
+          "source_sheet": "广播读取偏移",
+          "source_cell": "B5"
+        },
+        {
+          "rule_id": "drift_xlsx_row_6",
+          "name": "当前机间距 + 源机加速度",
+          "expression": "注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+          "conditions": [
+            {
+              "field": "current_min_pair_distance",
+              "op": "<=",
+              "threshold": 0.272198,
+              "unit": "m",
+              "source_text": "注入前最小机间距 <= 0.272198 m"
+            },
+            {
+              "field": "source_acceleration",
+              "op": ">",
+              "threshold": 7.73614,
+              "unit": "m/s²",
+              "source_text": "源机位置差分加速度模长 > 7.73614 m/s²"
+            }
+          ],
+          "source_sheet": "广播读取偏移",
+          "source_cell": "B6"
+        }
+      ]
+    }
+  ],
+  "mapping": [
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.48937,
+      "unit": "s",
+      "source_sheet": "机间低净空",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.622357,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.14,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.622357,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_6",
+      "rule_name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_6",
+      "rule_name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.800519,
+      "unit": "",
+      "source_sheet": "机间低净空",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_6",
+      "rule_name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.622357,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_7",
+      "rule_name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_7",
+      "rule_name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.805255,
+      "unit": "",
+      "source_sheet": "机间低净空",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_7",
+      "rule_name": "群体目标点偏差 + 任务进度 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.622357,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_8",
+      "rule_name": "群体目标点偏差 + 任务时间",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_8",
+      "rule_name": "群体目标点偏差 + 任务时间",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.48937,
+      "unit": "s",
+      "source_sheet": "机间低净空",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_9",
+      "rule_name": "群体目标点偏差 + 终点距离",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_9",
+      "rule_name": "群体目标点偏差 + 终点距离",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.14,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.663896,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.48937,
+      "unit": "s",
+      "source_sheet": "机间低净空",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.622357,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_11",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_11",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.800519,
+      "unit": "",
+      "source_sheet": "机间低净空",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.663896,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.14,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.663896 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.622357,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_13",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.698181,
+      "unit": "m",
+      "source_sheet": "机间低净空",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_drone",
+      "rule_id": "drone_drone_xlsx_row_13",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.805255,
+      "unit": "",
+      "source_sheet": "机间低净空",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 终点距离",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.672792,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 终点距离",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 3.58963,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 终点距离",
+      "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.690907,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 终点距离",
+      "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 3.58963,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_6",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 1.46437 s 且 全局设定点进度 <= 0.548852",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.46437,
+      "unit": "s",
+      "source_sheet": "机障低净空",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_6",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 1.46437 s 且 全局设定点进度 <= 0.548852",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.548852,
+      "unit": "",
+      "source_sheet": "机障低净空",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_7",
+      "rule_name": "任务时间 + 终点距离",
+      "expression": "任务已用时间 <= 1.46437 s 且 领机到任务终点距离 > 3.58963 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.46437,
+      "unit": "s",
+      "source_sheet": "机障低净空",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_7",
+      "rule_name": "任务时间 + 终点距离",
+      "expression": "任务已用时间 <= 1.46437 s 且 领机到任务终点距离 > 3.58963 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 3.58963,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_8",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 0.9725 s 且 全局设定点进度 <= 0.548852",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.9725,
+      "unit": "s",
+      "source_sheet": "机障低净空",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_8",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 0.9725 s 且 全局设定点进度 <= 0.548852",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.548852,
+      "unit": "",
+      "source_sheet": "机障低净空",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_9",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 全局设定点进度 <= 0.548852",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.672792,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_9",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 全局设定点进度 <= 0.548852",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.548852,
+      "unit": "",
+      "source_sheet": "机障低净空",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.672792,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 3.58963,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.637641,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_11",
+      "rule_name": "终点距离 + 源机目标点偏差",
+      "expression": "领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 3.58963,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_11",
+      "rule_name": "终点距离 + 源机目标点偏差",
+      "expression": "领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.637641,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.690907,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 3.58963,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 终点距离 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.637641,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_13",
+      "rule_name": "任务时间 + 终点距离",
+      "expression": "任务已用时间 <= 0.9725 s 且 领机到任务终点距离 > 2.34554 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.9725,
+      "unit": "s",
+      "source_sheet": "机障低净空",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drone_obstacle",
+      "rule_id": "drone_obstacle_xlsx_row_13",
+      "rule_name": "任务时间 + 终点距离",
+      "expression": "任务已用时间 <= 0.9725 s 且 领机到任务终点距离 > 2.34554 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.34554,
+      "unit": "m",
+      "source_sheet": "机障低净空",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_4",
+      "rule_name": "当前机间距 + 任务时间 + 终点距离",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 领机到任务终点距离 > 2.82452 m",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_4",
+      "rule_name": "当前机间距 + 任务时间 + 终点距离",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 领机到任务终点距离 > 2.82452 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.30188,
+      "unit": "s",
+      "source_sheet": "死锁代理",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_4",
+      "rule_name": "当前机间距 + 任务时间 + 终点距离",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 领机到任务终点距离 > 2.82452 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.82452,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_5",
+      "rule_name": "当前机间距 + 任务时间 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.721829",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_5",
+      "rule_name": "当前机间距 + 任务时间 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.721829",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.30188,
+      "unit": "s",
+      "source_sheet": "死锁代理",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_5",
+      "rule_name": "当前机间距 + 任务时间 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.721829",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.721829,
+      "unit": "",
+      "source_sheet": "死锁代理",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_6",
+      "rule_name": "当前机间距 + 任务时间",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_6",
+      "rule_name": "当前机间距 + 任务时间",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.30188,
+      "unit": "s",
+      "source_sheet": "死锁代理",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_7",
+      "rule_name": "当前机间距 + 终点距离",
+      "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_7",
+      "rule_name": "当前机间距 + 终点距离",
+      "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.82452,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_8",
+      "rule_name": "当前机间距 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 全局设定点进度 <= 0.721829",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_8",
+      "rule_name": "当前机间距 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 全局设定点进度 <= 0.721829",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.721829,
+      "unit": "",
+      "source_sheet": "死锁代理",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_9",
+      "rule_name": "当前机间距 + 终点距离 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m 且 全局设定点进度 <= 0.721829",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_9",
+      "rule_name": "当前机间距 + 终点距离 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m 且 全局设定点进度 <= 0.721829",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.82452,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_9",
+      "rule_name": "当前机间距 + 终点距离 + 任务进度",
+      "expression": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m 且 全局设定点进度 <= 0.721829",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.721829,
+      "unit": "",
+      "source_sheet": "死锁代理",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_10",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.520989",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.30188,
+      "unit": "s",
+      "source_sheet": "死锁代理",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_10",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.520989",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.520989,
+      "unit": "",
+      "source_sheet": "死锁代理",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_11",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 0.94625 s 且 全局设定点进度 <= 0.520989",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.94625,
+      "unit": "s",
+      "source_sheet": "死锁代理",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_11",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 0.94625 s 且 全局设定点进度 <= 0.520989",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.520989,
+      "unit": "",
+      "source_sheet": "死锁代理",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_12",
+      "rule_name": "当前机障距 + 任务进度",
+      "expression": "注入前最小机障距离 > 0.140833 m 且 全局设定点进度 <= 0.520989",
+      "field": "current_min_obstacle_distance",
+      "op": ">",
+      "threshold": 0.140833,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_12",
+      "rule_name": "当前机障距 + 任务进度",
+      "expression": "注入前最小机障距离 > 0.140833 m 且 全局设定点进度 <= 0.520989",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.520989,
+      "unit": "",
+      "source_sheet": "死锁代理",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_13",
+      "rule_name": "当前机间距 + 任务时间 + 源机目标点偏差",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 源机当前目标点偏差 <= 0.618156 m",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.204369,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_13",
+      "rule_name": "当前机间距 + 任务时间 + 源机目标点偏差",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 源机当前目标点偏差 <= 0.618156 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 1.30188,
+      "unit": "s",
+      "source_sheet": "死锁代理",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "deadlock",
+      "rule_id": "deadlock_xlsx_row_13",
+      "rule_name": "当前机间距 + 任务时间 + 源机目标点偏差",
+      "expression": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 源机当前目标点偏差 <= 0.618156 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.618156,
+      "unit": "m",
+      "source_sheet": "死锁代理",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_4",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务进度",
+      "expression": "四机最大位移方向夹角 > 25.2139 ° 且 注入前最小机障距离 > 0.148 m 且 全局设定点进度 > 0.119173",
+      "field": "cluster_max_course_angle",
+      "op": ">",
+      "threshold": 0.4400655722685982,
+      "unit": "rad",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_4",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务进度",
+      "expression": "四机最大位移方向夹角 > 25.2139 ° 且 注入前最小机障距离 > 0.148 m 且 全局设定点进度 > 0.119173",
+      "field": "current_min_obstacle_distance",
+      "op": ">",
+      "threshold": 0.148,
+      "unit": "m",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_4",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务进度",
+      "expression": "四机最大位移方向夹角 > 25.2139 ° 且 注入前最小机障距离 > 0.148 m 且 全局设定点进度 > 0.119173",
+      "field": "setpoint_progress",
+      "op": ">",
+      "threshold": 0.119173,
+      "unit": "",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_5",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务时间",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "field": "cluster_max_course_angle",
+      "op": ">",
+      "threshold": 0.02239885748839443,
+      "unit": "rad",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_5",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务时间",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "field": "current_min_obstacle_distance",
+      "op": ">",
+      "threshold": 0.148,
+      "unit": "m",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_5",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务时间",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "field": "elapsed_task_time",
+      "op": ">",
+      "threshold": 0.21125,
+      "unit": "s",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_6",
+      "rule_name": "群体方向分歧 + 当前机障距 + 当前机间距",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 注入前最小机间距 > 0.193794 m",
+      "field": "cluster_max_course_angle",
+      "op": ">",
+      "threshold": 0.02239885748839443,
+      "unit": "rad",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_6",
+      "rule_name": "群体方向分歧 + 当前机障距 + 当前机间距",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 注入前最小机间距 > 0.193794 m",
+      "field": "current_min_obstacle_distance",
+      "op": "<=",
+      "threshold": 0.65732,
+      "unit": "m",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_6",
+      "rule_name": "群体方向分歧 + 当前机障距 + 当前机间距",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 注入前最小机间距 > 0.193794 m",
+      "field": "current_min_pair_distance",
+      "op": ">",
+      "threshold": 0.193794,
+      "unit": "m",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_7",
+      "rule_name": "当前机障距 + 任务时间",
+      "expression": "注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "field": "current_min_obstacle_distance",
+      "op": ">",
+      "threshold": 0.148,
+      "unit": "m",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_7",
+      "rule_name": "当前机障距 + 任务时间",
+      "expression": "注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "field": "elapsed_task_time",
+      "op": ">",
+      "threshold": 0.21125,
+      "unit": "s",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_8",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务时间",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 任务已用时间 > 0.21125 s",
+      "field": "cluster_max_course_angle",
+      "op": ">",
+      "threshold": 0.02239885748839443,
+      "unit": "rad",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_8",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务时间",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 任务已用时间 > 0.21125 s",
+      "field": "current_min_obstacle_distance",
+      "op": "<=",
+      "threshold": 0.65732,
+      "unit": "m",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "delay",
+      "rule_id": "delay_xlsx_row_8",
+      "rule_name": "群体方向分歧 + 当前机障距 + 任务时间",
+      "expression": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 任务已用时间 > 0.21125 s",
+      "field": "elapsed_task_time",
+      "op": ">",
+      "threshold": 0.21125,
+      "unit": "s",
+      "source_sheet": "完成时间偏长",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_4",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_4",
+      "rule_name": "任务时间 + 任务进度",
+      "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.491228,
+      "unit": "",
+      "source_sheet": "规划代理",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_5",
+      "rule_name": "任务时间 + 源机目标点偏差",
+      "expression": "任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_5",
+      "rule_name": "任务时间 + 源机目标点偏差",
+      "expression": "任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.615968,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_6",
+      "rule_name": "任务进度 + 源机目标点偏差",
+      "expression": "全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.491228,
+      "unit": "",
+      "source_sheet": "规划代理",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_6",
+      "rule_name": "任务进度 + 源机目标点偏差",
+      "expression": "全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.615968,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_7",
+      "rule_name": "任务时间 + 任务进度 + 源机目标点偏差",
+      "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_7",
+      "rule_name": "任务时间 + 任务进度 + 源机目标点偏差",
+      "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.491228,
+      "unit": "",
+      "source_sheet": "规划代理",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_7",
+      "rule_name": "任务时间 + 任务进度 + 源机目标点偏差",
+      "expression": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.615968,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B7",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_8",
+      "rule_name": "任务时间 + 终点距离",
+      "expression": "任务已用时间 <= 0.89 s 且 领机到任务终点距离 > 2.00451 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_8",
+      "rule_name": "任务时间 + 终点距离",
+      "expression": "任务已用时间 <= 0.89 s 且 领机到任务终点距离 > 2.00451 m",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.00451,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B8",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_9",
+      "rule_name": "终点距离 + 任务进度",
+      "expression": "领机到任务终点距离 > 2.00451 m 且 全局设定点进度 <= 0.491228",
+      "field": "leader_goal_distance",
+      "op": ">",
+      "threshold": 2.00451,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_9",
+      "rule_name": "终点距离 + 任务进度",
+      "expression": "领机到任务终点距离 > 2.00451 m 且 全局设定点进度 <= 0.491228",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.491228,
+      "unit": "",
+      "source_sheet": "规划代理",
+      "source_cell": "B9",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 任务时间",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.69247,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_10",
+      "rule_name": "群体目标点偏差 + 任务时间",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B10",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_11",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 全局设定点进度 <= 0.491228",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.69247,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_11",
+      "rule_name": "群体目标点偏差 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 全局设定点进度 <= 0.491228",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.491228,
+      "unit": "",
+      "source_sheet": "规划代理",
+      "source_cell": "B11",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 任务时间 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.69247,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 任务时间 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_12",
+      "rule_name": "群体目标点偏差 + 任务时间 + 任务进度",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "field": "setpoint_progress",
+      "op": "<=",
+      "threshold": 0.491228,
+      "unit": "",
+      "source_sheet": "规划代理",
+      "source_cell": "B12",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_13",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.69247,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_13",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "elapsed_task_time",
+      "op": "<=",
+      "threshold": 0.89,
+      "unit": "s",
+      "source_sheet": "规划代理",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "planning",
+      "rule_id": "planning_xlsx_row_13",
+      "rule_name": "群体目标点偏差 + 任务时间 + 源机目标点偏差",
+      "expression": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+      "field": "source_target_offset",
+      "op": "<=",
+      "threshold": 0.615968,
+      "unit": "m",
+      "source_sheet": "规划代理",
+      "source_cell": "B13",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 当前机间距 + 源机加速度",
+      "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.751948,
+      "unit": "m",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 当前机间距 + 源机加速度",
+      "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+      "field": "current_min_pair_distance",
+      "op": "<=",
+      "threshold": 0.272198,
+      "unit": "m",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_4",
+      "rule_name": "群体目标点偏差 + 当前机间距 + 源机加速度",
+      "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+      "field": "source_acceleration",
+      "op": ">",
+      "threshold": 7.73614,
+      "unit": "m/s²",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B4",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 当前机间距 + 源机转向",
+      "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机相邻位移转角 > 1.13097 °",
+      "field": "cluster_max_target_offset",
+      "op": "<=",
+      "threshold": 0.751948,
+      "unit": "m",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 当前机间距 + 源机转向",
+      "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机相邻位移转角 > 1.13097 °",
+      "field": "current_min_pair_distance",
+      "op": "<=",
+      "threshold": 0.272198,
+      "unit": "m",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_5",
+      "rule_name": "群体目标点偏差 + 当前机间距 + 源机转向",
+      "expression": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机相邻位移转角 > 1.13097 °",
+      "field": "source_turn_angle",
+      "op": ">",
+      "threshold": 0.01973915024128027,
+      "unit": "rad",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B5",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_6",
+      "rule_name": "当前机间距 + 源机加速度",
+      "expression": "注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+      "field": "current_min_pair_distance",
+      "op": "<=",
+      "threshold": 0.272198,
+      "unit": "m",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    },
+    {
+      "target": "drift",
+      "rule_id": "drift_xlsx_row_6",
+      "rule_name": "当前机间距 + 源机加速度",
+      "expression": "注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+      "field": "source_acceleration",
+      "op": ">",
+      "threshold": 7.73614,
+      "unit": "m/s²",
+      "source_sheet": "广播读取偏移",
+      "source_cell": "B6",
+      "acquisition": "core.feature_vector before publish",
+      "limitation": "current target offset is not trajectory deviation; displacement angle is not body yaw"
+    }
+  ],
+  "source_cells": {
+    "机间低净空": {
+      "B4": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "B5": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "B6": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519 且 源机当前目标点偏差 <= 0.622357 m",
+      "B7": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255 且 源机当前目标点偏差 <= 0.622357 m",
+      "B8": "四机最大当前目标点偏差 <= 0.698181 m 且 任务已用时间 <= 1.48937 s",
+      "B9": "四机最大当前目标点偏差 <= 0.698181 m 且 领机到任务终点距离 > 2.14 m",
+      "B10": "四机最大当前目标点偏差 <= 0.663896 m 且 任务已用时间 <= 1.48937 s 且 源机当前目标点偏差 <= 0.622357 m",
+      "B11": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.800519",
+      "B12": "四机最大当前目标点偏差 <= 0.663896 m 且 领机到任务终点距离 > 2.14 m 且 源机当前目标点偏差 <= 0.622357 m",
+      "B13": "四机最大当前目标点偏差 <= 0.698181 m 且 全局设定点进度 <= 0.805255"
+    },
+    "机障低净空": {
+      "B4": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m",
+      "B5": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m",
+      "B6": "任务已用时间 <= 1.46437 s 且 全局设定点进度 <= 0.548852",
+      "B7": "任务已用时间 <= 1.46437 s 且 领机到任务终点距离 > 3.58963 m",
+      "B8": "任务已用时间 <= 0.9725 s 且 全局设定点进度 <= 0.548852",
+      "B9": "四机最大当前目标点偏差 <= 0.672792 m 且 全局设定点进度 <= 0.548852",
+      "B10": "四机最大当前目标点偏差 <= 0.672792 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "B11": "领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "B12": "四机最大当前目标点偏差 <= 0.690907 m 且 领机到任务终点距离 > 3.58963 m 且 源机当前目标点偏差 <= 0.637641 m",
+      "B13": "任务已用时间 <= 0.9725 s 且 领机到任务终点距离 > 2.34554 m"
+    },
+    "死锁代理": {
+      "B4": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 领机到任务终点距离 > 2.82452 m",
+      "B5": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.721829",
+      "B6": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s",
+      "B7": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m",
+      "B8": "注入前最小机间距 > 0.204369 m 且 全局设定点进度 <= 0.721829",
+      "B9": "注入前最小机间距 > 0.204369 m 且 领机到任务终点距离 > 2.82452 m 且 全局设定点进度 <= 0.721829",
+      "B10": "任务已用时间 <= 1.30188 s 且 全局设定点进度 <= 0.520989",
+      "B11": "任务已用时间 <= 0.94625 s 且 全局设定点进度 <= 0.520989",
+      "B12": "注入前最小机障距离 > 0.140833 m 且 全局设定点进度 <= 0.520989",
+      "B13": "注入前最小机间距 > 0.204369 m 且 任务已用时间 <= 1.30188 s 且 源机当前目标点偏差 <= 0.618156 m"
+    },
+    "完成时间偏长": {
+      "B4": "四机最大位移方向夹角 > 25.2139 ° 且 注入前最小机障距离 > 0.148 m 且 全局设定点进度 > 0.119173",
+      "B5": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "B6": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 注入前最小机间距 > 0.193794 m",
+      "B7": "注入前最小机障距离 > 0.148 m 且 任务已用时间 > 0.21125 s",
+      "B8": "四机最大位移方向夹角 > 1.28336 ° 且 注入前最小机障距离 <= 0.65732 m 且 任务已用时间 > 0.21125 s"
+    },
+    "规划代理": {
+      "B4": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "B5": "任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m",
+      "B6": "全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "B7": "任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228 且 源机当前目标点偏差 <= 0.615968 m",
+      "B8": "任务已用时间 <= 0.89 s 且 领机到任务终点距离 > 2.00451 m",
+      "B9": "领机到任务终点距离 > 2.00451 m 且 全局设定点进度 <= 0.491228",
+      "B10": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s",
+      "B11": "四机最大当前目标点偏差 <= 0.69247 m 且 全局设定点进度 <= 0.491228",
+      "B12": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 全局设定点进度 <= 0.491228",
+      "B13": "四机最大当前目标点偏差 <= 0.69247 m 且 任务已用时间 <= 0.89 s 且 源机当前目标点偏差 <= 0.615968 m"
+    },
+    "广播读取偏移": {
+      "B4": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²",
+      "B5": "四机最大当前目标点偏差 <= 0.751948 m 且 注入前最小机间距 <= 0.272198 m 且 源机相邻位移转角 > 1.13097 °",
+      "B6": "注入前最小机间距 <= 0.272198 m 且 源机位置差分加速度模长 > 7.73614 m/s²"
+    }
+  },
+  "caveats": [
+    "Workbook outcome/baseline cells are not silently used as calibration.",
+    "Rows are imported exactly as present; title counts are not trusted."
+  ],
+  "timeout_calibration": {
+    "completion_mean_s": 2.0130612244897956,
+    "baseline_trials": 100,
+    "successful_trials": 98,
+    "source": "baseline_calibration.json (not distributed; frozen parameter only)",
+    "source_sha256": "3118f9171baede0f081a6a30654179649a5bbdc0187c7880fe505dd4b3558fd3",
+    "user_confirmed": "2026-11-11 use 2x original repository baseline mean"
+  },
+  "geometry_calibration": {
+    "body_radius_m": 0.1,
+    "body_model": "identical 2D circles",
+    "pair_contact_center_distance_m": 0.2,
+    "obstacle_contact_center_clearance_m": 0.1,
+    "source": "User confirmed single-UAV radius 0.1m on 2026-11-11; separate from original legacy crash_uav_dist=0.1m"
+  }
+}

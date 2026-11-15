@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- NEW isolated experiment entry. Not an existing native swarm launch. -->
+<launch>
+  <arg name="ripple_enabled" default="false"/>
+  <!-- Default preserves the existing intensity entry and all its parameters. -->
+  <arg name="ripple_experiment" default="intensity"/>
+  <arg name="diagnostic_position_adapter" default="false"/>
+  <arg name="target" default="drone_drone"/>
+  <arg name="intensity_group" default="G1"/>
+  <!-- accuracy G1/G2/G3/G4/G5 wait 0/1/2/3/5 seconds before a NEW event. -->
+  <arg name="accuracy_group" default="G1"/>
+  <arg name="g1_delay_s" default="0.2"/>
+  <arg name="g2_delay_s" default="0.4"/>
+  <arg name="g3_delay_s" default="0.6"/>
+  <arg name="g4_delay_s" default="0.8"/>
+  <!-- G5 intentionally has no fixed-delay parameter. -->
+  <arg name="seed" default="20261111"/>
+  <arg name="trial_id" default="1"/>
+  <arg name="max_ticks" default="4000"/>
+  <arg name="motion_tolerance_m" default="0.0"/>
+  <arg name="offset_tolerance_m" default="0.0"/>
+  <!-- Single-UAV radius explicitly confirmed by user 2026-11-11. -->
+  <arg name="body_radius_m" default="0.1"/>
+  <!-- -1 lets the node derive 2x the frozen repository baseline mean. -->
+  <arg name="timeout_threshold_s" default="-1"/>
+  <arg name="rules_file" default="$(find adaptive_swarm)/scripts/layered_planner/latency_eval/intensity_rules_frozen.json"/>
+  <arg name="output_parent" default="$(env HOME)/ripple_intensity_results"/>
+  <node pkg="adaptive_swarm" type="ripple_intensity_node.py" name="ripple_intensity" output="screen" required="true">
+    <env name="MPLBACKEND" value="Agg"/>
+    <env name="OMP_NUM_THREADS" value="1"/>
+    <env name="OPENBLAS_NUM_THREADS" value="1"/>
+    <param name="enabled" value="$(arg ripple_enabled)"/>
+    <param name="experiment" value="$(arg ripple_experiment)"/>
+    <param name="diagnostic_position_adapter" value="$(arg diagnostic_position_adapter)"/>
+    <param name="target" value="$(arg target)"/>
+    <param name="group" value="$(eval arg('accuracy_group') if arg('ripple_experiment') == 'accuracy' else arg('intensity_group'))"/>
+    <param name="g1_delay_s" value="$(arg g1_delay_s)"/>
+    <param name="g2_delay_s" value="$(arg g2_delay_s)"/>
+    <param name="g3_delay_s" value="$(arg g3_delay_s)"/>
+    <param name="g4_delay_s" value="$(arg g4_delay_s)"/>
+    <param name="seed" value="$(arg seed)"/>
+    <param name="trial_id" value="$(arg trial_id)"/>
+    <param name="max_ticks" value="$(arg max_ticks)"/>
+    <param name="motion_tolerance_m" value="$(arg motion_tolerance_m)"/>
+    <param name="offset_tolerance_m" value="$(arg offset_tolerance_m)"/>
+    <param name="body_radius_m" value="$(arg body_radius_m)"/>
+    <param name="timeout_threshold_s" value="$(arg timeout_threshold_s)"/>
+    <param name="rules_file" value="$(arg rules_file)"/>
+    <param name="output_parent" value="$(arg output_parent)"/>
+  </node>
+</launch>
