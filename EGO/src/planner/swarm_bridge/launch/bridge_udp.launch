@@ -1,0 +1,57 @@
+<launch>
+
+  <arg name="drone_id"/>
+  <arg name="broadcast_ip"/>
+  <arg name="enable_comm_fuzz" default="false"/>
+  <arg name="comm_fuzz_target_drone_id" default="0"/>
+  <arg name="comm_fuzz_mode" default="random"/>
+  <arg name="comm_fuzz_seed" default="-1"/>
+  <arg name="comm_fuzz_start_min_sec" default="5.0"/>
+  <arg name="comm_fuzz_start_max_sec" default="25.0"/>
+  <arg name="comm_fuzz_duration_min_sec" default="5.0"/>
+  <arg name="comm_fuzz_duration_max_sec" default="20.0"/>
+  <arg name="comm_fuzz_delay_min_ms" default="80.0"/>
+  <arg name="comm_fuzz_delay_max_ms" default="250.0"/>
+  <arg name="comm_fuzz_jitter_min_ms" default="30.0"/>
+  <arg name="comm_fuzz_jitter_max_ms" default="120.0"/>
+  <arg name="comm_fuzz_noise_sigma_pos_min" default="0.05"/>
+  <arg name="comm_fuzz_noise_sigma_pos_max" default="0.20"/>
+  <arg name="comm_fuzz_report_dir" default="~/.ego_fuzz_reports"/>
+  <arg name="comm_fuzz_run_id" default=""/>
+  <arg name="traj_tx_input_topic" default="/broadcast_traj_from_planner"/>
+
+  <node pkg="swarm_bridge" name="drone_$(arg drone_id)_bridge_node" type="bridge_node_udp" output="screen">
+  
+    <remap from="~my_odom" to="/vins_estimator/imu_propagate"/>
+    <remap from="/goal_brig2plner" to="/goal_with_id"/>
+    <remap from="/broadcast_traj_from_planner" to="$(arg traj_tx_input_topic)"/>
+
+    <param name="broadcast_ip" value="$(arg broadcast_ip)" type="string"/>
+    <param name="drone_id" value="$(arg drone_id)"/>
+    <param name="odom_max_freq" value="70"/>
+    <param name="enable_comm_fuzz" value="$(arg enable_comm_fuzz)"/>
+    <param name="comm_fuzz_target_drone_id" value="$(arg comm_fuzz_target_drone_id)"/>
+    <param name="comm_fuzz_mode" value="$(arg comm_fuzz_mode)"/>
+    <param name="comm_fuzz_seed" value="$(arg comm_fuzz_seed)"/>
+    <param name="comm_fuzz_start_min_sec" value="$(arg comm_fuzz_start_min_sec)"/>
+    <param name="comm_fuzz_start_max_sec" value="$(arg comm_fuzz_start_max_sec)"/>
+    <param name="comm_fuzz_duration_min_sec" value="$(arg comm_fuzz_duration_min_sec)"/>
+    <param name="comm_fuzz_duration_max_sec" value="$(arg comm_fuzz_duration_max_sec)"/>
+    <param name="comm_fuzz_delay_min_ms" value="$(arg comm_fuzz_delay_min_ms)"/>
+    <param name="comm_fuzz_delay_max_ms" value="$(arg comm_fuzz_delay_max_ms)"/>
+    <param name="comm_fuzz_jitter_min_ms" value="$(arg comm_fuzz_jitter_min_ms)"/>
+    <param name="comm_fuzz_jitter_max_ms" value="$(arg comm_fuzz_jitter_max_ms)"/>
+    <param name="comm_fuzz_noise_sigma_pos_min" value="$(arg comm_fuzz_noise_sigma_pos_min)"/>
+    <param name="comm_fuzz_noise_sigma_pos_max" value="$(arg comm_fuzz_noise_sigma_pos_max)"/>
+    <param name="comm_fuzz_report_dir" value="$(arg comm_fuzz_report_dir)"/>
+    <param name="comm_fuzz_run_id" value="$(arg comm_fuzz_run_id)"/>
+
+  </node>
+
+  <node pkg="swarm_bridge" name="traj2odom_node" type="traj2odom_node" output="screen">
+
+    <param name="odom_hz" value="30" />
+
+  </node>
+
+</launch>

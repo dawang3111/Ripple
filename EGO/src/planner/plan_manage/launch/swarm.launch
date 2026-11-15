@@ -1,0 +1,365 @@
+<launch>
+    <arg name="map_size_x" value="50.0"/>
+    <arg name="map_size_y" value="50.0"/>
+    <arg name="map_size_z" value=" 3.0"/>
+    <arg name="odom_topic" value="visual_slam/odom" />
+    <arg name="enable_hard_collision_monitor" default="false"/>
+    <arg name="drone_num" value="10"/>
+    <arg name="drone_radius" value="0.1"/>
+    <arg name="drone_collision_margin" value="0.00"/>
+    <arg name="obstacle_collision_margin" value="0.00"/>
+    <arg name="obstacle_voxel" value="0.1"/>
+    <arg name="fuzz_check_hz" value="30.0"/>
+    <arg name="fuzz_window_sec" value="5.0"/>
+    <arg name="fuzz_report_dir" default="~/.ego_fuzz_reports"/>
+    <arg name="fuzz_run_id" default=""/>
+    <arg name="enable_stl_metrics_monitor" default="false"/>
+    <arg name="stl_window_sec" default="5.0"/>
+    <arg name="stl_move_threshold_x" default="0.2"/>
+    <arg name="stl_delay_timeout_threshold_s" default="120.0"/>
+    <arg name="stl_active_speed_eps" default="0.05"/>
+    <arg name="stl_start_grace_sec" default="2.0"/>
+    <arg name="stl_drift_eps" default="0.25"/>
+    <arg name="stl_future_horizon_sec" default="3.0"/>
+    <arg name="stl_check_hz" default="2.0"/>
+    <arg name="kill_all_nodes_on_collision" default="false"/>
+    <arg name="enable_comm_fuzz" default="false"/>
+    <arg name="comm_fuzz_target_drone_id" default="0"/>
+    <arg name="comm_fuzz_mode" default="random"/>
+    <arg name="comm_fuzz_seed" default="-1"/>
+    <arg name="comm_fuzz_start_min_sec" default="5.0"/>
+    <arg name="comm_fuzz_start_max_sec" default="25.0"/>
+    <arg name="comm_fuzz_duration_min_sec" default="5.0"/>
+    <arg name="comm_fuzz_duration_max_sec" default="20.0"/>
+    <arg name="comm_fuzz_delay_min_ms" default="80.0"/>
+    <arg name="comm_fuzz_delay_max_ms" default="250.0"/>
+    <arg name="comm_fuzz_jitter_min_ms" default="30.0"/>
+    <arg name="comm_fuzz_jitter_max_ms" default="120.0"/>
+    <arg name="comm_fuzz_noise_sigma_pos_min" default="0.05"/>
+    <arg name="comm_fuzz_noise_sigma_pos_max" default="0.20"/>
+    <arg name="comm_fuzz_report_dir" default="$(arg fuzz_report_dir)"/>
+    <arg name="comm_fuzz_run_id" default="$(arg fuzz_run_id)"/>
+    <arg name="enable_attack_plan_latency_proxy" default="false"/>
+    <arg name="attack_plan_file" default=""/>
+    <arg name="attack_plan_tx_bridge_input_topic" default="/broadcast_traj_from_planner"/>
+    <arg name="enable_adaptive_replan_latency_proxy" default="false"/>
+    <arg name="adaptive_replan_attack_config" default=""/>
+    <arg name="adaptive_max_injections_per_round" default="5"/>
+    <arg name="adaptive_cooldown_s" default="2.0"/>
+    <arg name="adaptive_trigger_window_s" default="1.0"/>
+    <arg name="adaptive_future_horizon_s" default="3.0"/>
+    <arg name="adaptive_future_sample_dt" default="0.1"/>
+    <arg name="adaptive_interaction_margin_threshold" default="0.25"/>
+    <arg name="adaptive_interaction_score_threshold" default="0.6"/>
+    <arg name="adaptive_latency_factor" default="1.2"/>
+    <arg name="adaptive_latency_min_ms" default="80.0"/>
+    <arg name="adaptive_latency_max_ms" default="250.0"/>
+    <arg name="adaptive_period_fallback_ms" default="120.0"/>
+    <arg name="adaptive_seed" default="20260917"/>
+    <arg name="enable_rule_pool_latency_proxy" default="false"/>
+    <arg name="rule_pool_active_rule_id" default="R1"/>
+    <arg name="rule_pool_screening_mode" default="false"/>
+    <arg name="rule_pool_monitor_only" default="false"/>
+    <arg name="rule_pool_max_injections_per_round" default="5"/>
+    <arg name="rule_pool_cooldown_s" default="1.0"/>
+    <arg name="rule_pool_history_window_s" default="5.0"/>
+    <arg name="rule_pool_trigger_window_s" default="1.0"/>
+    <arg name="rule_pool_future_horizon_s" default="3.0"/>
+    <arg name="rule_pool_future_sample_dt" default="0.1"/>
+    <arg name="rule_pool_heading_aligned_deg" default="20.0"/>
+    <arg name="rule_pool_future_collision_margin" default="0.0"/>
+    <arg name="rule_pool_latency_epsilon_ms" default="10.0"/>
+    <arg name="rule_pool_latency_min_ms" default="40.0"/>
+    <arg name="rule_pool_latency_max_ms" default="0.0"/>
+    <arg name="rule_pool_protocol_timeout_ms" default="1000.0"/>
+    <arg name="rule_pool_max_latency_ratio" default="0.8"/>
+    <arg name="rule_pool_period_fallback_ms" default="120.0"/>
+
+    <param name="/fuzz_report_dir" value="$(arg fuzz_report_dir)"/>
+    <param name="/fuzz_run_id" value="$(arg fuzz_run_id)"/>
+
+    <node pkg="ego_planner" type="swarm_traj_incident_logger.py" name="swarm_traj_incident_logger" output="screen">
+        <param name="report_dir" value="$(arg fuzz_report_dir)"/>
+        <param name="run_id" value="$(arg fuzz_run_id)"/>
+        <param name="drone_num" value="$(arg drone_num)"/>
+        <param name="window_sec" value="10.0"/>
+        <param name="buffer_sec" value="35.0"/>
+        <param name="broadcast_topic" value="/broadcast_traj_from_planner"/>
+    </node>
+
+    <node if="$(arg enable_stl_metrics_monitor)" pkg="ego_planner" type="stl_attack_metrics_monitor.py" name="stl_attack_metrics_monitor" output="screen">
+        <param name="report_dir" value="$(arg fuzz_report_dir)"/>
+        <param name="run_id" value="$(arg fuzz_run_id)"/>
+        <param name="drone_num" value="$(arg drone_num)"/>
+        <param name="odom_suffix" value="$(arg odom_topic)"/>
+        <param name="obstacle_topic" value="/map_generator/global_cloud"/>
+        <param name="check_hz" value="$(arg stl_check_hz)"/>
+        <param name="window_sec" value="$(arg stl_window_sec)"/>
+        <param name="move_threshold_x" value="$(arg stl_move_threshold_x)"/>
+        <param name="delay_timeout_threshold_s" value="$(arg stl_delay_timeout_threshold_s)"/>
+        <param name="active_speed_eps" value="$(arg stl_active_speed_eps)"/>
+        <param name="start_grace_sec" value="$(arg stl_start_grace_sec)"/>
+        <param name="drift_eps" value="$(arg stl_drift_eps)"/>
+        <param name="future_horizon_sec" value="$(arg stl_future_horizon_sec)"/>
+        <param name="drone_radius" value="$(arg drone_radius)"/>
+        <param name="drone_collision_margin" value="$(arg drone_collision_margin)"/>
+        <param name="obstacle_collision_margin" value="$(arg obstacle_collision_margin)"/>
+        <param name="obstacle_voxel" value="$(arg obstacle_voxel)"/>
+    </node>
+
+    <node if="$(arg enable_attack_plan_latency_proxy)" pkg="ego_planner" type="attack_plan_latency_proxy.py" name="attack_plan_latency_proxy" output="screen">
+        <param name="enable" value="$(arg enable_attack_plan_latency_proxy)"/>
+        <param name="plan_file" value="$(arg attack_plan_file)"/>
+        <param name="in_topic" value="/broadcast_traj_from_planner"/>
+        <param name="out_topic" value="/broadcast_traj_from_planner_attacked"/>
+        <param name="report_dir" value="$(arg fuzz_report_dir)"/>
+        <param name="run_id" value="$(arg fuzz_run_id)"/>
+    </node>
+
+    <node if="$(arg enable_adaptive_replan_latency_proxy)" pkg="ego_planner" type="adaptive_replan_latency_proxy.py" name="adaptive_replan_latency_proxy" output="screen">
+        <param name="enable" value="$(arg enable_adaptive_replan_latency_proxy)"/>
+        <param name="config_file" value="$(arg adaptive_replan_attack_config)"/>
+        <param name="in_topic" value="/broadcast_traj_from_planner"/>
+        <param name="out_topic" value="/broadcast_traj_from_planner_attacked"/>
+        <param name="report_dir" value="$(arg fuzz_report_dir)"/>
+        <param name="run_id" value="$(arg fuzz_run_id)"/>
+        <param name="drone_num" value="$(arg drone_num)"/>
+        <param name="drone_radius" value="$(arg drone_radius)"/>
+        <param name="max_injections_per_round" value="$(arg adaptive_max_injections_per_round)"/>
+        <param name="cooldown_s" value="$(arg adaptive_cooldown_s)"/>
+        <param name="trigger_window_s" value="$(arg adaptive_trigger_window_s)"/>
+        <param name="future_horizon_s" value="$(arg adaptive_future_horizon_s)"/>
+        <param name="future_sample_dt" value="$(arg adaptive_future_sample_dt)"/>
+        <param name="interaction_margin_threshold" value="$(arg adaptive_interaction_margin_threshold)"/>
+        <param name="interaction_score_threshold" value="$(arg adaptive_interaction_score_threshold)"/>
+        <param name="latency_factor" value="$(arg adaptive_latency_factor)"/>
+        <param name="latency_min_ms" value="$(arg adaptive_latency_min_ms)"/>
+        <param name="latency_max_ms" value="$(arg adaptive_latency_max_ms)"/>
+        <param name="period_fallback_ms" value="$(arg adaptive_period_fallback_ms)"/>
+        <param name="seed" value="$(arg adaptive_seed)"/>
+    </node>
+
+    <node if="$(arg enable_rule_pool_latency_proxy)" pkg="ego_planner" type="rule_pool_latency_proxy.py" name="rule_pool_latency_proxy" output="screen">
+        <param name="enable" value="$(arg enable_rule_pool_latency_proxy)"/>
+        <param name="active_rule_id" value="$(arg rule_pool_active_rule_id)"/>
+        <param name="screening_mode" value="$(arg rule_pool_screening_mode)"/>
+        <param name="monitor_only" value="$(arg rule_pool_monitor_only)"/>
+        <param name="in_topic" value="/broadcast_traj_from_planner"/>
+        <param name="out_topic" value="/broadcast_traj_from_planner_attacked"/>
+        <param name="odom_suffix" value="$(arg odom_topic)"/>
+        <param name="report_dir" value="$(arg fuzz_report_dir)"/>
+        <param name="run_id" value="$(arg fuzz_run_id)"/>
+        <param name="drone_num" value="$(arg drone_num)"/>
+        <param name="drone_radius" value="$(arg drone_radius)"/>
+        <param name="max_injections_per_round" value="$(arg rule_pool_max_injections_per_round)"/>
+        <param name="cooldown_s" value="$(arg rule_pool_cooldown_s)"/>
+        <param name="history_window_s" value="$(arg rule_pool_history_window_s)"/>
+        <param name="trigger_window_s" value="$(arg rule_pool_trigger_window_s)"/>
+        <param name="future_horizon_s" value="$(arg rule_pool_future_horizon_s)"/>
+        <param name="future_sample_dt" value="$(arg rule_pool_future_sample_dt)"/>
+        <param name="heading_aligned_deg" value="$(arg rule_pool_heading_aligned_deg)"/>
+        <param name="future_collision_margin" value="$(arg rule_pool_future_collision_margin)"/>
+        <param name="latency_epsilon_ms" value="$(arg rule_pool_latency_epsilon_ms)"/>
+        <param name="latency_min_ms" value="$(arg rule_pool_latency_min_ms)"/>
+        <param name="latency_max_ms" value="$(arg rule_pool_latency_max_ms)"/>
+        <param name="protocol_timeout_ms" value="$(arg rule_pool_protocol_timeout_ms)"/>
+        <param name="max_latency_ratio" value="$(arg rule_pool_max_latency_ratio)"/>
+        <param name="period_fallback_ms" value="$(arg rule_pool_period_fallback_ms)"/>
+    </node>
+
+    <!-- swarm topic transmitter bridge-->
+    <include file="$(find swarm_bridge)/launch/bridge_udp.launch">
+        <arg name="drone_id" value="999"/>
+        <arg name="broadcast_ip" value="127.0.0.255"/>
+        <arg name="enable_comm_fuzz" value="$(arg enable_comm_fuzz)"/>
+        <arg name="comm_fuzz_target_drone_id" value="$(arg comm_fuzz_target_drone_id)"/>
+        <arg name="comm_fuzz_mode" value="$(arg comm_fuzz_mode)"/>
+        <arg name="comm_fuzz_seed" value="$(arg comm_fuzz_seed)"/>
+        <arg name="comm_fuzz_start_min_sec" value="$(arg comm_fuzz_start_min_sec)"/>
+        <arg name="comm_fuzz_start_max_sec" value="$(arg comm_fuzz_start_max_sec)"/>
+        <arg name="comm_fuzz_duration_min_sec" value="$(arg comm_fuzz_duration_min_sec)"/>
+        <arg name="comm_fuzz_duration_max_sec" value="$(arg comm_fuzz_duration_max_sec)"/>
+        <arg name="comm_fuzz_delay_min_ms" value="$(arg comm_fuzz_delay_min_ms)"/>
+        <arg name="comm_fuzz_delay_max_ms" value="$(arg comm_fuzz_delay_max_ms)"/>
+        <arg name="comm_fuzz_jitter_min_ms" value="$(arg comm_fuzz_jitter_min_ms)"/>
+        <arg name="comm_fuzz_jitter_max_ms" value="$(arg comm_fuzz_jitter_max_ms)"/>
+        <arg name="comm_fuzz_noise_sigma_pos_min" value="$(arg comm_fuzz_noise_sigma_pos_min)"/>
+        <arg name="comm_fuzz_noise_sigma_pos_max" value="$(arg comm_fuzz_noise_sigma_pos_max)"/>
+        <arg name="comm_fuzz_report_dir" value="$(arg comm_fuzz_report_dir)"/>
+        <arg name="comm_fuzz_run_id" value="$(arg comm_fuzz_run_id)"/>
+        <arg name="traj_tx_input_topic" value="$(arg attack_plan_tx_bridge_input_topic)"/>
+    </include>
+
+    <node if="$(arg enable_hard_collision_monitor)" pkg="ego_planner" type="fuzz_collision_monitor.py" name="fuzz_collision_monitor" output="screen">
+        <param name="drone_num" value="$(arg drone_num)"/>
+        <param name="odom_suffix" value="$(arg odom_topic)"/>
+        <param name="obstacle_topic" value="/map_generator/global_cloud"/>
+        <param name="enable_obstacle_collision" value="true"/>
+        <param name="enable_drone_collision" value="true"/>
+        <param name="drone_radius" value="$(arg drone_radius)"/>
+        <param name="drone_collision_margin" value="$(arg drone_collision_margin)"/>
+        <param name="obstacle_collision_margin" value="$(arg obstacle_collision_margin)"/>
+        <param name="obstacle_voxel" value="$(arg obstacle_voxel)"/>
+        <param name="check_hz" value="$(arg fuzz_check_hz)"/>
+        <param name="window_sec" value="$(arg fuzz_window_sec)"/>
+        <param name="report_dir" value="$(arg fuzz_report_dir)"/>
+        <param name="run_id" value="$(arg fuzz_run_id)"/>
+        <param name="kill_all_nodes" value="$(arg kill_all_nodes_on_collision)"/>
+        <param name="mandatory_stop_topic" value="/mandatory_stop_to_planner"/>
+        <param name="event_topic" value="/fuzz_collision_event"/>
+    </node>
+
+    <!-- map -->
+    <node pkg ="map_generator" name ="random_forest" type ="random_forest" output = "screen">
+        <param name="map/x_size" value="26" />
+        <param name="map/y_size" value="20" />
+        <param name="map/z_size" value="3" />
+        <param name="map/resolution" value="0.1"/>
+        <!-- seed >= 0 uses fixed map; seed = -1 uses random map each run -->
+        <param name="ObstacleShape/seed" value="1"/>
+        <param name="map/obs_num" value="100"/>
+        <param name="ObstacleShape/lower_rad" value="0.5"/>
+        <param name="ObstacleShape/upper_rad" value="0.7"/>
+        <param name="ObstacleShape/lower_hei" value="0.0"/>
+        <param name="ObstacleShape/upper_hei" value="3.0"/>
+        <param name="map/circle_num" value="100"/>
+        <param name="ObstacleShape/radius_l" value="0.7"/>
+        <param name="ObstacleShape/radius_h" value="0.5"/>
+        <param name="ObstacleShape/z_l" value="0.7"/>
+        <param name="ObstacleShape/z_h" value="0.8"/>
+        <param name="ObstacleShape/theta" value="0.5"/>
+        <param name="pub_rate" value="1.0"/>
+        <param name="min_distance" value="0.8"/>
+    </node>
+
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="0"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="-9.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="9.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="1"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="-7.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="7.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="2"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="-5.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="5.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="3"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="-3.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="3.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="4"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="-1.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="1.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="5"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="1.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="-1.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="6"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="3.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="-3.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="7"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="5.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="-5.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="8"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="7.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="-7.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+    <include file="$(find ego_planner)/launch/include/run_in_sim.xml">
+        <arg name="drone_id" value="9"/>
+        <arg name="init_x" value="-15.0"/>
+        <arg name="init_y" value="9.0"/>
+        <arg name="init_z" value="0.1"/>
+        <arg name="target0_x" value="15.0"/>
+        <arg name="target0_y" value="-9.0"/>
+        <arg name="target0_z" value="1"/>
+        <arg name="map_size_x" value="$(arg map_size_x)"/>
+        <arg name="map_size_y" value="$(arg map_size_y)"/>
+        <arg name="map_size_z" value="$(arg map_size_z)"/>
+        <arg name="odom_topic" value="$(arg odom_topic)"/>
+    </include>
+</launch>
