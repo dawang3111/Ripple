@@ -1,0 +1,24 @@
+swarm_exploration/utils/lkh_mtsp_solver/resource/*.atsp
+swarm_exploration/utils/lkh_mtsp_solver/resource/*.par
+swarm_exploration/utils/lkh_mtsp_solver/resource/*.tour
+# Generated build and experiment output
+build/
+devel/
+install/
+logs/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.o
+*.so
+*.a
+*.bag
+*.db3
+*.log
+*.atsp
+*.tour
+*.par
+*~
+racer_eval_results/
+.env
+.env.*

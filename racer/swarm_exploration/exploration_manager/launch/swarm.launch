@@ -1,0 +1,35 @@
+<launch>
+  <!-- New equivalent entry: native map/start positions/goals remain in swarm_exploration.launch. -->
+  <arg name="ripple_enabled" default="false"/>
+  <arg name="ripple_control" default="false"/>
+  <arg name="ripple_target" default="delay_timeout"/>
+  <arg name="ripple_group" default="G1"/>
+  <arg name="ripple_experiment" default="intensity"/>
+  <arg name="g1_delay_s" default="0.2"/><arg name="g2_delay_s" default="0.4"/>
+  <arg name="g3_delay_s" default="0.6"/><arg name="g4_delay_s" default="0.8"/>
+  <arg name="ripple_seed" default="20261113"/><arg name="ripple_trial" default="manual"/>
+  <arg name="ripple_source" default="1"/>
+  <arg name="ripple_rules" default="$(find exploration_manager)/../../../../racer_eval_results/rule_batch_20261111T115519Z_0c100e70c72743798ccef7537a0e707e/frozen_rules.json"/>
+  <arg name="ripple_output" default="/tmp/racer_intensity_manual"/>
+  <arg name="ripple_budget_s" default="250"/>
+  <arg name="map_file" default="$(find map_generator)/resource/pillar.pcd"/>
+  <include file="$(find exploration_manager)/launch/swarm_exploration.launch">
+    <arg name="evaluation" value="true"/><arg name="map_file" value="$(arg map_file)"/>
+  </include>
+  <param name="/racer_eval/source_id" value="$(arg ripple_source)"/>
+  <param name="/racer_eval/control" value="$(eval not arg('ripple_enabled') or arg('ripple_control'))"/>
+  <param name="/racer_eval/rule_mode" value="false"/>
+  <param name="/racer_eval/run_budget_s" value="$(arg ripple_budget_s)"/>
+  <param name="/racer_intensity/enabled" value="$(arg ripple_enabled)"/>
+  <param name="/racer_intensity/group" value="$(eval 5 if arg('ripple_experiment') == 'accuracy' else int(arg('ripple_group')[1:]))"/>
+  <param name="/racer_accuracy/enabled" value="$(eval arg('ripple_enabled') and not arg('ripple_control') and arg('ripple_experiment') == 'accuracy')"/>
+  <param name="/racer_accuracy/group" value="$(arg ripple_group)"/>
+  <param name="/racer_accuracy/wait_s" value="$(eval {'G1':0.0,'G2':1.0,'G3':2.0,'G4':3.0,'G5':5.0}[arg('ripple_group')])"/>
+  <param name="/racer_intensity/fixed_delay_s" value="$(eval 0.0 if arg('ripple_experiment') == 'accuracy' else {'G1':float(arg('g1_delay_s')),'G2':float(arg('g2_delay_s')),'G3':float(arg('g3_delay_s')),'G4':float(arg('g4_delay_s')),'G5':0.0}[arg('ripple_group')])"/>
+  <param name="/racer_intensity/target" value="$(arg ripple_target)"/>
+  <param name="/racer_intensity/seed" type="str" value="$(arg ripple_seed)"/>
+  <param name="/racer_intensity/trial" value="$(arg ripple_trial)"/>
+  <param name="/racer_intensity/rules" value="$(arg ripple_rules)"/>
+  <param name="/racer_intensity/output" value="$(arg ripple_output)"/>
+  <group if="$(arg ripple_enabled)"><node unless="$(arg ripple_control)" pkg="exploration_manager" type="ripple_rule_monitor.py" name="ripple_rule_monitor" output="screen"/></group>
+</launch>

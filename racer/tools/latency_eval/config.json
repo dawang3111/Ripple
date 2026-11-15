@@ -1,0 +1,42 @@
+{
+  "active_ids": [1, 2, 3, 4],
+  "injection_window_s": [5.0, 30.0],
+  "delay_fraction": [0.1, 0.9],
+  "task_budget_s": 250.0,
+  "startup_budget_s": 40.0,
+  "local_radius_m": 6.0,
+  "alignment_tolerance_s": 0.15,
+  "max_sample_gap_s": 0.25,
+  "future_horizon_s": 3.0,
+  "future_step_s": 0.1,
+  "history_s": 5.0,
+  "min_cluster_samples": 8,
+  "analysis_seed": 20261103,
+  "holdout_fraction": 0.25,
+  "min_rule_support": 5,
+  "low_confidence_support": 20,
+  "max_rules_per_target": 12,
+  "bootstrap_samples": 256,
+  "thresholds": {
+    "body_radius_m": 0.199,
+    "map_resolution_m": 0.1,
+    "state_timeout_s": 0.2,
+    "planning_deadline_s": 0.1,
+    "deadlock_window_s": 10.0,
+    "deadlock_speed_mps": 0.05,
+    "deadlock_displacement_m": 0.2,
+    "drift_distance_m": 0.5,
+    "drift_duration_s": 1.0
+  },
+  "threshold_sources": {
+    "body_radius_m": "explicit evaluation sphere proxy, initialized from single_drone_planner.xml sdf_map/obstacles_inflation; not measured airframe geometry",
+    "map_resolution_m": "single_drone_planner.xml sdf_map/resolution; PCD occupied voxel geometry",
+    "state_timeout_s": "fast_exploration_fsm.cpp optTimerCallback neighbor age > 0.2",
+    "planning_deadline_s": "fast_exploration_manager.cpp planExploreMotion total > 0.1",
+    "deadlock_window_s": "configurable evaluation definition; excludes IDLE, FINISH, INIT and WAIT_TRIGGER",
+    "deadlock_speed_mps": "configurable evaluation definition",
+    "deadlock_displacement_m": "configurable evaluation definition",
+    "drift_distance_m": "configurable receiver-cache versus current simulation-position definition",
+    "drift_duration_s": "configurable continuous exceedance duration"
+  }
+}
