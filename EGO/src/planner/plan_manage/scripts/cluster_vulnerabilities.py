@@ -1,16 +1,17 @@
 import os
 import csv
 import collections
+import argparse
 
 def main():
-    import sys
-    if len(sys.argv) > 1:
-        base_dir = os.path.abspath(sys.argv[1])
-        summary_csv = os.path.join(base_dir, "summary.csv")
-        out_file = os.path.join(base_dir, "vulnerabilities_report.csv")
-    else:
-        summary_csv = "/home/dawang3111/EGO-Planner-v2/swarm-playground/main_ws/results/headless/20260410_202929/summary.csv"
-        out_file = "/home/dawang3111/EGO-Planner-v2/swarm-playground/main_ws/results/headless/20260410_202929/vulnerabilities_report.csv"
+    parser = argparse.ArgumentParser(
+        description="Classify vulnerabilities in an experiment directory's summary.csv."
+    )
+    parser.add_argument("result_dir", help="Directory containing summary.csv")
+    args = parser.parse_args()
+    base_dir = os.path.abspath(os.path.expanduser(args.result_dir))
+    summary_csv = os.path.join(base_dir, "summary.csv")
+    out_file = os.path.join(base_dir, "vulnerabilities_report.csv")
     
     if not os.path.exists(summary_csv):
         print(f"Error: {summary_csv} not found.")

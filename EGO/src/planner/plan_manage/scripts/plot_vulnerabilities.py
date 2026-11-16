@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import json
+import argparse
 
 def classify_ripple_effect(run_dir):
     """
@@ -108,12 +109,13 @@ def classify_ripple_effect(run_dir):
     return "Myopic Evasion"
 
 def main():
-    import sys
-    if len(sys.argv) > 1:
-        base_dir = os.path.abspath(sys.argv[1])
-        report_path = os.path.join(base_dir, "vulnerabilities_report.csv")
-    else:
-        report_path = "/home/dawang3111/EGO-Planner-v2/swarm-playground/main_ws/results/headless/200次大范围fuzz，新的分类/vulnerabilities_report.csv"
+    parser = argparse.ArgumentParser(
+        description="Plot vulnerabilities_report.csv from an experiment directory."
+    )
+    parser.add_argument("result_dir", help="Directory containing vulnerabilities_report.csv")
+    args = parser.parse_args()
+    base_dir = os.path.abspath(os.path.expanduser(args.result_dir))
+    report_path = os.path.join(base_dir, "vulnerabilities_report.csv")
         
     out_dir = os.path.dirname(report_path)
     
@@ -128,13 +130,13 @@ def main():
     
     # Sub-classify Ripple Effect
     subclasses = []
-    base_dir = os.path.dirname(report_path) # the 200次大范围fuzz directory
+    base_dir = os.path.dirname(report_path)  # Directory containing the report and runs.
     
     for idx, row in df_bugs.iterrows():
         vuln_class = row['vulnerability_class']
         if vuln_class == 'VULN_1_RIPPLE_EFFECT':
             # The run directory from the report json path in CSV
-            # Example path in CSV (round_dir): /home/.../main_ws/results/headless/20260410_202929/run1
+            # Resolve the recorded run basename relative to the report directory.
             raw_run_dir = str(row.get('round_dir', ''))
             run_basename = os.path.basename(raw_run_dir.rstrip('/'))
             actual_run_dir = os.path.join(base_dir, run_basename)

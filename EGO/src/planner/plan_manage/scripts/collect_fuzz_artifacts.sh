@@ -3,26 +3,30 @@ set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 <abs_target_fuzz_report_dir> <fuzz_run_id>"
-  echo "Example: $0 /home/user/.../run1/fuzz_report 20260429_153547_run1"
+  echo "Example: $0 /path/to/run/fuzz_report RUN_ID"
+  echo "Optional: set RIPPLE_ROOT to the repository root to search another checkout."
   exit 2
 fi
 
 TARGET_FUZZ_REPORT_DIR="$1"
 FUZZ_RUN_ID="$2"
-HOME_EGO="$HOME/.ego_fuzz_reports"
+USER_REPORTS_DIR="$HOME/.ego_fuzz_reports"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPOSITORY_ROOT="${RIPPLE_ROOT:-$(cd "$SCRIPT_DIR/../../../../.." && pwd)}"
+EGO_WORKSPACE_DIR="$REPOSITORY_ROOT/EGO"
 
 SRC_DIRS=()
 # primary candidate
-if [ -d "$HOME_EGO/$FUZZ_RUN_ID" ]; then
-  SRC_DIRS+=("$HOME_EGO/$FUZZ_RUN_ID")
+if [ -d "$USER_REPORTS_DIR/$FUZZ_RUN_ID" ]; then
+  SRC_DIRS+=("$USER_REPORTS_DIR/$FUZZ_RUN_ID")
 fi
 # also search workspace results locations (best-effort)
 while IFS= read -r d; do
   SRC_DIRS+=("$d")
-done < <(find /home/dawang3111/EGO-Planner-v2 -type d -name "$FUZZ_RUN_ID" 2>/dev/null || true)
+done < <(find "$EGO_WORKSPACE_DIR" -type d -name "$FUZZ_RUN_ID" 2>/dev/null || true)
 
 if [ ${#SRC_DIRS[@]} -eq 0 ]; then
-  echo "No source fuzz run dir found for $FUZZ_RUN_ID (looked under $HOME_EGO and workspace)."
+  echo "No source fuzz run dir found for $FUZZ_RUN_ID (looked under $USER_REPORTS_DIR and $EGO_WORKSPACE_DIR)."
   exit 1
 fi
 
