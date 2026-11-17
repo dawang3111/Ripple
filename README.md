@@ -307,3 +307,7 @@ Rules and outcome thresholds are configured separately. Preserve the chosen rule
 ## License
 
 Refer to the root and component-specific license files. Third-party code retains its original license and attribution.
+
+## Physical UAV Validation
+
+Annotated photographs from the controlled indoor UAV experiments are available in [real/](real/README.md), grouped by the three case studies.
